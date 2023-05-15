@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Clone a repo') {
       steps {
-        sh 'git clone'
+        sh 'git clone https://github.com/DevOpsQueen/Test4.git'
       }
     }
 
