@@ -7,5 +7,13 @@ pipeline {
       }
     }
 
+    stage('Build and package') {
+      steps {
+        sh ''' dir(\'ABCTechnologies\') {
+                    withEnv([\'PATH+MAVEN=/usr/bin\']) {
+                        sh \'mvn package\''''
+        }
+      }
+
+    }
   }
-}
