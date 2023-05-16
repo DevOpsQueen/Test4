@@ -30,10 +30,8 @@ pipeline {
                         def tomcatUsername = env.TOMCAT_USERNAME
                         def tomcatPassword = env.TOMCAT_PASSWORD
                         def tomcatHost = env.TOMCAT_HOST
-                        
-                        sh '''
-                            sshpass -p '${tomcatPassword}' scp -o StrictHostKeyChecking=no ABCTechnologies/target/ABCtechnologies-1.0.war '${tomcatUsername}'@'${tomcatHost}':/opt/tomcat/webapps
-                        '''
+
+                        sh "sshpass -p '${tomcatPassword}' scp -o StrictHostKeyChecking=no ABCTechnologies/target/ABCtechnologies-1.0.war ${tomcatUsername}@${tomcatHost}:/opt/tomcat/webapps"
                     }
                 }
             }
