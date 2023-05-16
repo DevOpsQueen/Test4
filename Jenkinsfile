@@ -23,7 +23,10 @@ pipeline {
                 withCredentials([
                     usernamePassword(credentialsId: 'be813074-4ae4-4087-8cc3-fa414f5f7aa0', passwordVariable: 'TOMCAT_PASSWORD', usernameVariable: 'TOMCAT_USERNAME')
                 ]) {
-                    sh "sshpass -p ${TOMCAT_PASSWORD} scp -o StrictHostKeyChecking=no ABCTechnologies/target/ABCtechnologies-1.0.war ${TOMCAT_USERNAME}@192.168.1.10:/opt/tomcat/webapps"
+                    script {
+                        def tomcatHost = '192.168.1.10' // Replace with the actual IP address or hostname of your Tomcat server
+                        sh "sshpass -p ${env.TOMCAT_PASSWORD} scp -o StrictHostKeyChecking=no ABCTechnologies/target/ABCtechnologies-1.0.war ${env.TOMCAT_USERNAME}@${tomcatHost}:/opt/tomcat/webapps"
+                    }
                 }
             }
         }
